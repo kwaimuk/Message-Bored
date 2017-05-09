@@ -1,6 +1,6 @@
 /* jshint esversion: 6 */
 angular.module('app')
-  .controller('createUserCtrl',
+  .controller('registerCtrl',
     ['$scope', '$location', 'UserService',
     function($scope, $location, UserService){
 
