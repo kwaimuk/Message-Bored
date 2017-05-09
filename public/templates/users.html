@@ -1,7 +1,4 @@
-<h1>Users</h1>
 
-<p>sanity 1</p>
-<p>{{ testScope }}</p>
-
-<p>sanity 2</p>
-<p>{{ users.controllerAsTest }}</p>
+<div ng-repeat="user in userList">
+<a href="/users/{{user.id}}"><h1>{{user.name}}</h1></a>
+</div>

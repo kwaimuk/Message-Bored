@@ -7,18 +7,8 @@ angular.module('app', ['ngRoute'])
       $routeProvider
         .when('/', {
           templateUrl: '/templates/home.html',
-          controller: 'TopicsCtrl',
-          controllerAs: 'Topics'
-        })
-        .when('/login', {
-          templateUrl: '/templates/login.html',
-          controller: 'UsersCtrl'
-          // controllerAs: 'Users'
-        })
-        .when('/users', {
-          templateUrl: '/templates/users.html',
-          controller: 'UsersCtrl',
-          controllerAs: 'Users'
+          controller: 'MessageCtrl',
+          controllerAs: 'Messages'
         })
         .when('/topics', {
           templateUrl: '/templates/topics.html',
@@ -30,10 +20,19 @@ angular.module('app', ['ngRoute'])
           controller: 'SingleTopicCtrl',
           controllerAs: 'SingleTopic'
         })
-        .when('/messages', {
-          templateUrl: '/templates/messages.html',
-          controller: 'MessageCtrl',
-          controllerAs: 'Messages'
+        .when('/users', {
+          templateUrl: '/templates/users.html',
+          controller: 'UsersCtrl',
+          controllerAs: 'user'
+        })
+        .when('/users/:id', {
+          templateUrl: '/templates/singleUser.html',
+          controller: 'singleUserCtrl',
+          controllerAs: 'sngUser'
+        })
+        .when('/register', {
+          templateUrl: '/templates/register.html',
+          controller: 'registerCtrl',
         });
 
       $locationProvider.html5Mode({
