@@ -10,6 +10,11 @@ angular.module('app', ['ngRoute'])
           controller: 'TopicsCtrl',
           controllerAs: 'Topics'
         })
+        .when('/login', {
+          templateUrl: '/templates/login.html',
+          controller: 'UsersCtrl'
+          // controllerAs: 'Users'
+        })
         .when('/users', {
           templateUrl: '/templates/users.html',
           controller: 'UsersCtrl',

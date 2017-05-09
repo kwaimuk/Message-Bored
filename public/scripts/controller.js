@@ -1,4 +1,4 @@
-
+/* jshint esversion: 6 */
 const createUserObj = (username) => {
   return {
     name: username
@@ -64,7 +64,7 @@ angular.module('app')
     }
   ])
   .controller('TopicsCtrl',
-    ['$rootScope', '$scope', 'TopicService',
+    ['$rootScope', '$scope', 'TopicService', 'UserService',
     function($rootScope, $scope, TopicService) {
 
       TopicService.getTopics()
@@ -104,7 +104,48 @@ angular.module('app')
             location.reload();
           });
       };
-    }]
+    },
+    function($rootScope, $scope, UserService){
+      $scope.getUser = function(username) {
+        if(username === '') {
+          $scope.userId = 'Enter Login ID';
+          return;
+        }
+        UserService.getUser(username)
+          .then(response => {
+            console.log(response.data);
+            if (response.data.length !== 1) {
+              res.send('Error, user does not exist');
+            } else {
+              localStorage.setItem('user', response.data[0].name);
+              localStorage.setItem('user_id', response.data[0].id);
+              location.reload();
+            }
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      };
+
+      $scope.createUser = function(username) {
+        UserService.addUser(createUserObj(username))
+          .then(response => {
+            localStorage.setItem('user', response.data.name);
+            localStorage.setItem('user_id', response.data.id);
+            location.reload();
+          })
+          .catch(err => {
+            console.log(err);
+          });
+      };
+
+      $scope.logOutUser = function() {
+        localStorage.clear();
+        location.reload();
+      };
+    }
+
+    ]
   )
   .controller('MessageCtrl',
     ['$rootScope', '$scope', 'MessageService',
